@@ -9,7 +9,8 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .post('/*', (req, res) => {
 	res.status(200).send("request received");
-	var body = req.body;
-	alert(body);
+	console.log(req);
+	//var body = req.body;
+	//alert(body);
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
