@@ -7,9 +7,9 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .post('/*', (req, res) => {
+  .post('/*', (req, res) => {	
+	console.log(req.body);
 	res.status(200).send("request received");
-	console.log(req);
 	//var body = req.body;
 	//alert(body);
   })
