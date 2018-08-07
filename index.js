@@ -11,5 +11,5 @@ express()
 	res.status(200).send("request received");
 	var body = req.body;
 	console.log(body);
-  }
+  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
