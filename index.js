@@ -10,6 +10,6 @@ express()
   .post('/*', (req, res) => {
 	res.status(200).send("request received");
 	var body = req.body;
-	console.log(body);
+	alert(body);
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
