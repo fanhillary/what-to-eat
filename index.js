@@ -14,7 +14,7 @@ app
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .post('/', (req, res) => {
-    response.write(req.body);
+    // response.write(req.body.text);
     res.status(200).send(req.body.text);
 
     let data = {
