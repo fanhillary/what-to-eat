@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 5000
 
+// help to parse JSON sent from slack
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -14,7 +15,7 @@ app
   .get('/', (req, res) => res.render('pages/index'))
   .post('/', (req, res) => {
     console.dir(req.body.text);
-    res.status(200).send("request received");
+    res.status(200).send("request received!!");
 
     let data = {
       response_type: 'in_channel',
