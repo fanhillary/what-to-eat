@@ -17,11 +17,11 @@ app
   .post('/', (req, res) => {
 
     var text = req.body.text.split(" ");
-    var location = text[0];
+    var city = text[0];
     var radius = text[1];
-    let url = "https://api/yelp.com/v3/businesses/search?location="+location+"&radius="+radius;
+    let url = "https://api.yelp.com/v3/businesses/search?location="+city+"&radius="+radius;
 
-    // yelp get request
+    // yelp get request s
     fetch(url, {
       method: 'GET',
       headers: {
@@ -30,7 +30,6 @@ app
     }) 
     .then(function(response) {
       if (response.total > 0) { // if yelp returns any results
-
         var businesses = response.businesses;
         // var random_business = businesses[Math.floor(Math.random()*businesses.length)];
         let data = {
