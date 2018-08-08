@@ -15,14 +15,11 @@ app
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .post('/', (req, res) => {
-    res.status(200).send("hello!");
 
-    // var text = res.body.text.split(" ");
-    // var location = text[0];
-    // var radius = text[1];
-    // console.log(location);
-    // console.log(radius);
-    var text = res.body.text;
+    var text = res.body.text.split(" ");
+    var location = text[0];
+    var radius = text[1];
+    res.status(200).send(radius);
     // yelp get request
     // fetch("https://api/yelp.com/v3/businesses/search?location="+text, {
     //   method: 'GET',
