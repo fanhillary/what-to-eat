@@ -32,10 +32,27 @@ app
       response.json().then(function(data) { // need to convert to json for parsing
         if (data['total'] > 0) {
           var list_businesses = data['businesses'];
-          // var random_business = businesses[Math.floor(Math.random()*businesses.length)];
+          var three_random = [];
+          while (three_random.length < 3) {
+            let random_business = list_businesses[Math.floor(Math.random()*list_businesses.length)];
+            if (!three_random.includes(random_business)) {
+              three_random.push(random_business);
+            } 
+          }
           let responseJson = {
             response_type: 'in_channel',
-            text: 'Here are three random options of restaurants within your area! 1.'+list_businesses[0].name,
+            text: 'Here are three random options of restaurants within your area!',
+            attachments: [
+              {
+                "title": three_random[0].name,
+              },
+              {
+                "title": three_random[1].name,
+              },
+              {
+                "title": three_random[2].name,
+              }
+            ]
           };
           res.status(200).send(res.json(responseJson));
         }
