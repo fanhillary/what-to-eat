@@ -14,8 +14,8 @@ app
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .post('/', (req, res) => {
-    console.dir(req.body.text);
-    res.status(200).send("request received!!");
+    response.write(req.body);
+    res.status(200).send(req.body.text);
 
     let data = {
       response_type: 'in_channel',
