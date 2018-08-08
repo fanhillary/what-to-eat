@@ -27,19 +27,19 @@ app
       headers: {
         Authorization:"Bearer " + API_KEY,
       },
-    }) 
+    })
     .then(function(response) {
-      res.status(200).send("we in yelp bitches");
-
-      if (response.total > 0) { // if yelp returns any results
-        var businesses = response.businesses;
-        // var random_business = businesses[Math.floor(Math.random()*businesses.length)];
-        let data = {
-          response_type: 'in_channel',
-          text: 'Here are three random options of restaurants within your area! 1.'+businesses[0].name,
-        };
-        res.status(200).send(res.json(data));
-      }
+      response.json().then(function(data) {
+        if (data.total > 0) {
+          var businesses = data.businesses;
+          // var random_business = businesses[Math.floor(Math.random()*businesses.length)];
+          let responseJson = {
+            response_type: 'in_channel',
+            text: 'Here are three random options of restaurants within your area! 1.'+businesses[0].name,
+          };
+          res.status(200).send(res.json(responseJson));
+        }
+      })
     })
     .catch(function(err) {
       console.log(err)
