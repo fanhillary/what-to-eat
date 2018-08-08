@@ -18,7 +18,11 @@ app
     var text = res.body.text.split(" ");
     var location = text[0];
     var radius = text[1];
-    res.status(200).send(location);
+    let data = {
+      response_type: 'in_channel',
+      text: 'Here are three random options of restaurants within your area!'+location+'radius='+radius,
+    };
+    res.status(200).send(res.json(data));
     // // yelp get request
     // fetch("https://api/yelp.com/v3/businesses/search?location="+location+"&radius="+radius, {
     //   method: 'GET',
