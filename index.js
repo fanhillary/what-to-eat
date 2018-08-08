@@ -16,18 +16,18 @@ app
   .get('/', (req, res) => res.render('pages/index'))
   .post('/', (req, res) => {
 
-    var text = req.body.text.split(" ");
-    if (text[0]) { // TODO: figure out how to send error message if they only enter a number. ex(/what-eat 20)
-      var city = text[0];
+    var text = req.body.text.split("within");
+    if (text[0]) {
+      var location = text[0];
     } else {
-      res.send("Please specify a proper location");
+      res.send("Please specify a location");
     }
     if (text[1]) {
       var radius = text[1];
     } else {
       var radius = 15;
     }
-    let url = "https://api.yelp.com/v3/businesses/search?location="+city+"&radius="+radius;
+    let url = "https://api.yelp.com/v3/businesses/search?location="+location+"&radius="+radius;
 
     // yelp get requests
     fetch(url, {
