@@ -29,17 +29,19 @@ app
       },
     })
     .then(function(response) {
-      response.json().then(function(data) {
-        if (data.total > 0) {
-          var businesses = data.businesses;
+      response.json().then(function(data) { // need to convert to json for parsing
+        if (data['total'] > 0) {
+          var list_businesses = data['businesses'];
           // var random_business = businesses[Math.floor(Math.random()*businesses.length)];
           let responseJson = {
             response_type: 'in_channel',
-            text: 'Here are three random options of restaurants within your area! 1.'+businesses[0].name,
+            text: 'Here are three random options of restaurants within your area! 1.'+list_businesses[0].name,
           };
           res.status(200).send(res.json(responseJson));
         }
-      })
+      }).catch(function(err) {
+        console.log(err)
+      });
     })
     .catch(function(err) {
       console.log(err)
