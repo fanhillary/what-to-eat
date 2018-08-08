@@ -29,6 +29,8 @@ app
       },
     }) 
     .then(function(response) {
+      res.status(200).send("we in yelp bitches");
+
       if (response.total > 0) { // if yelp returns any results
         var businesses = response.businesses;
         // var random_business = businesses[Math.floor(Math.random()*businesses.length)];
