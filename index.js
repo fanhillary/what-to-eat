@@ -17,7 +17,7 @@ app
   .post('/', (req, res) => {
 
     var text = req.body.text.split("within");
-    if (text[0]) {
+    if (text[0]) { // TODO: luxury item - handle current location in the future
       var location = text[0];
     } else {
       res.send("Please specify a location");
@@ -27,9 +27,11 @@ app
     } else {
       var radius = 15;
     }
+
+    // TODO: luxury item - only show open now options 
     let url = "https://api.yelp.com/v3/businesses/search?location="+location+"&radius="+radius;
 
-    // yelp get requests
+    // yelp get request for businesses matching search request
     fetch(url, {
       method: 'GET',
       headers: {
@@ -53,16 +55,16 @@ app
             attachments: [
               {
                 "title": three_random[0].name,
-                'image_url': three_random[0].image_url,
+                'thumb_url': three_random[0].image_url,
               },
               {
                 "title": three_random[1].name,
-                'image_url': three_random[1].image_url,
+                'thumb_url': three_random[1].image_url,
 
               },
               {
                 "title": three_random[2].name,
-                'image_url': three_random[2].image_url,
+                'thumb_url': three_random[2].image_url,
               }
             ]
           };
