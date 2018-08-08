@@ -3,6 +3,7 @@ const path = require('path')
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 5000
+const API_KEY = "bbMQ5abnmtXWaAw4oxCzndXmBVIWV77bxuJObPe1nYlETEdzNkdJncBeqBvSEyTqyUwJDaEcn4DYw9pOUa-Bp681KLt1Q15NY6b54iogbRS7nrb1JvtWGpikOkZqW3Yx";
 
 // help to parse JSON sent from slack
 app.use(bodyParser.json());
@@ -19,7 +20,12 @@ app
     var radius = text[1];
 
     // yelp get request
-    fetch("https://api/yelp.com/v3/businesses/search?location="+location+"&radius="+radius)
+    fetch("https://api/yelp.com/v3/businesses/search?location="+location+"&radius="+radius, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + API_KEY,
+      },
+    }) 
       .then(function(response) {
         var businesses = response.business;
         var random_business = businesses[Math.floor(Math.random()*businesses.length)];
