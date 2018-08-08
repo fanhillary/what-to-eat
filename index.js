@@ -14,13 +14,12 @@ app
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .post('/', (req, res) => {
-    // response.write(req.body.text);
-    res.status(200).send(req.body.text);
 
     let data = {
       response_type: 'in_channel',
       text: 'Here are three random options of restaurants within your area!',
     };
-    res.json(data);
+    res.status(200).send(res.json(data));
+
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
