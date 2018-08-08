@@ -14,12 +14,21 @@ app
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .post('/', (req, res) => {
+    var text = res.body.text.split(" ");
+    var location = text[0];
+    var radius = text[1];
 
-    let data = {
-      response_type: 'in_channel',
-      text: 'Here are three random options of restaurants within your area!',
-    };
-    res.status(200).send(res.json(data));
+    // yelp get request
+    fetch("https://api/yelp.com/v3/businesses/search?location="+location+"&radius="+radius)
+      .then(function(response) {
+        var businesses = response.business;
+        var random_business = businesses[Math.floor(Math.random()*businesses.length)];
+        let data = {
+          response_type: 'in_channel',
+          text: 'Here are three random options of restaurants within your area! 1.'+random_business,
+        };
+        res.status(200).send(res.json(data));
+      });
 
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
