@@ -18,27 +18,26 @@ app
     var text = res.body.text.split(" ");
     var location = text[0];
     var radius = text[1];
-    res.send(location);
-    res.send(radius);
-    // yelp get request
-    fetch("https://api/yelp.com/v3/businesses/search?location="+location+"&radius="+radius, {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer ' + API_KEY,
-      },
-    }) 
-      .then(function(response) {
-        if (response.total > 0) { // if yelp returns any results
+    res.status(200).send(location);
+    // // yelp get request
+    // fetch("https://api/yelp.com/v3/businesses/search?location="+location+"&radius="+radius, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Authorization': 'Bearer ' + API_KEY,
+    //   },
+    // }) 
+    //   .then(function(response) {
+    //     if (response.total > 0) { // if yelp returns any results
 
-          var businesses = response.businesses;
-          var random_business = businesses[Math.floor(Math.random()*businesses.length)];
-          let data = {
-            response_type: 'in_channel',
-            text: 'Here are three random options of restaurants within your area! 1.'+random_business,
-          };
-          res.status(200).send(res.json(data));
-        }
-      });
+    //       var businesses = response.businesses;
+    //       var random_business = businesses[Math.floor(Math.random()*businesses.length)];
+    //       let data = {
+    //         response_type: 'in_channel',
+    //         text: 'Here are three random options of restaurants within your area! 1.'+random_business,
+    //       };
+    //       res.status(200).send(res.json(data));
+    //     }
+    //   });
 
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
