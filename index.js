@@ -53,10 +53,11 @@ app
           let responseJson = {
             response_type: 'in_channel',
             text: 'Here are three random options of restaurants within your area!',
-            attachments: [ // TODO: figure out how to reduce repeated code
+            attachments: [ // TODO: syntax - figure out how to reduce repeated code
               {
                 "title": three_random[0].name,
-                "text": three_random[0].location,
+                "title_link": three_random[0].url,
+                "text": three_random[0].location.address1 + ", " + three_random[0].location.city,
                 'thumb_url': three_random[0].image_url,
                 "fields": [
                   {
@@ -71,14 +72,15 @@ app
                   },
                   {
                     "title": "Distance",
-                    "value": three_random[0].distance*CONVERT_MILES + " miles",
+                    "value": (Math.round((three_random[0].distance*CONVERT_MILES)*100)/100) + " miles",
                     "short": true
                   }
                 ]
               },
               {
                 "title": three_random[1].name,
-                "text": three_random[1].location,
+                "title_link": three_random[1].url,
+                "text": three_random[1].location.address1 + ", " + three_random[1].location.city,
                 'thumb_url': three_random[1].image_url,
                 "fields": [
                   {
@@ -93,14 +95,15 @@ app
                   },
                   {
                     "title": "Distance",
-                    "value": three_random[1].distance*CONVERT_MILES + " miles",
+                    "value": (Math.round((three_random[1].distance*CONVERT_MILES)*100)/100) + " miles",
                     "short": true
                   }
                 ]
               },
               {
                 "title": three_random[2].name,
-                "text": three_random[2].location,
+                "title_link": three_random[2].url,
+                "text": three_random[2].location.address1 + ", " + three_random[2].location.city,
                 'thumb_url': three_random[2].image_url,
                 "fields": [
                   {
@@ -115,7 +118,7 @@ app
                   },
                   {
                     "title": "Distance",
-                    "value": three_random[2].distance*CONVERT_MILES + " miles",
+                    "value": (Math.round((three_random[2].distance*CONVERT_MILES)*100)/100) + " miles",
                     "short": true
                   }
                 ]
