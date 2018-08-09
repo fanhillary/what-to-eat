@@ -55,7 +55,25 @@ app
             attachments: [
               {
                 "title": three_random[0].name,
+                "text": three_random[0].location,
                 'thumb_url': three_random[0].image_url,
+                "fields": [
+                  {
+                    "title": "Rating",
+                    "value": three_random[0].rating,
+                    "short": true
+                  }, 
+                  {
+                    "title": "Pricing",
+                    "value": three_random[0].price,
+                    "short": true
+                  },
+                  {
+                    "title": "Distance",
+                    "value": three_random[0].distance,
+                    "short": true
+                  }
+                ]
               },
               {
                 "title": three_random[1].name,
