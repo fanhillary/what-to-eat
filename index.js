@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 5000
 const API_KEY = "bbMQ5abnmtXWaAw4oxCzndXmBVIWV77bxuJObPe1nYlETEdzNkdJncBeqBvSEyTqyUwJDaEcn4DYw9pOUa-Bp681KLt1Q15NY6b54iogbRS7nrb1JvtWGpikOkZqW3Yx";
+const CONVERT_MILES = 0.000621371192;
 var fetch = require('node-fetch');
 // help to parse JSON sent from slack
 app.use(bodyParser.json());
@@ -52,7 +53,7 @@ app
           let responseJson = {
             response_type: 'in_channel',
             text: 'Here are three random options of restaurants within your area!',
-            attachments: [
+            attachments: [ // TODO: figure out how to reduce repeated code
               {
                 "title": three_random[0].name,
                 "text": three_random[0].location,
@@ -60,7 +61,7 @@ app
                 "fields": [
                   {
                     "title": "Rating",
-                    "value": three_random[0].rating,
+                    "value": three_random[0].rating + " Stars",
                     "short": true
                   }, 
                   {
@@ -70,19 +71,54 @@ app
                   },
                   {
                     "title": "Distance",
-                    "value": three_random[0].distance,
+                    "value": three_random[0].distance*CONVERT_MILES + " miles",
                     "short": true
                   }
                 ]
               },
               {
                 "title": three_random[1].name,
+                "text": three_random[1].location,
                 'thumb_url': three_random[1].image_url,
-
+                "fields": [
+                  {
+                    "title": "Rating",
+                    "value": three_random[1].rating + " Stars",
+                    "short": true
+                  }, 
+                  {
+                    "title": "Pricing",
+                    "value": three_random[1].price,
+                    "short": true
+                  },
+                  {
+                    "title": "Distance",
+                    "value": three_random[1].distance*CONVERT_MILES + " miles",
+                    "short": true
+                  }
+                ]
               },
               {
                 "title": three_random[2].name,
+                "text": three_random[2].location,
                 'thumb_url': three_random[2].image_url,
+                "fields": [
+                  {
+                    "title": "Rating",
+                    "value": three_random[2].rating + " Stars",
+                    "short": true
+                  }, 
+                  {
+                    "title": "Pricing",
+                    "value": three_random[2].price,
+                    "short": true
+                  },
+                  {
+                    "title": "Distance",
+                    "value": three_random[2].distance*CONVERT_MILES + " miles",
+                    "short": true
+                  }
+                ]
               }
             ]
           };
