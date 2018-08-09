@@ -13,8 +13,9 @@ const PORT = process.env.PORT || 5000
 const API_KEY = "bbMQ5abnmtXWaAw4oxCzndXmBVIWV77bxuJObPe1nYlETEdzNkdJncBeqBvSEyTqyUwJDaEcn4DYw9pOUa-Bp681KLt1Q15NY6b54iogbRS7nrb1JvtWGpikOkZqW3Yx";
 
 // const for converting meters to miles
-const CONVERT_MILES = 0.000621371192;
-
+const CONVERT_TO_MILES = 0.000621371192;
+const CONVERT_TO_METERS = 1609.34;
+const DEFAULT_RADIUS = 24140; // in meters 15 miles default
 // help to parse JSON sent from slack
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,10 +37,10 @@ app
       res.send("Please specify a location");
     }
     if (text[1]) {
-      var radius = text[1];
+      var radius = Math.round(parseInt(text[1], 10)*CONVERT_TO_METERS);
     } else {
       // default radius is 15 miles
-      var radius = 15;
+      var radius = DEFAULT_RADIUS;
     }
 
     // TODO: luxury item - only show open now options 
@@ -92,7 +93,7 @@ app
                   },
                   {
                     "title": "Distance",
-                    "value": (Math.round((three_random[0].distance*CONVERT_MILES)*100)/100) + " miles",
+                    "value": (Math.round((three_random[0].distance*CONVERT_TO_MILES)*100)/100) + " miles",
                     "short": true
                   }
                 ]
@@ -115,7 +116,7 @@ app
                   },
                   {
                     "title": "Distance",
-                    "value": (Math.round((three_random[1].distance*CONVERT_MILES)*100)/100) + " miles",
+                    "value": (Math.round((three_random[1].distance*CONVERT_TO_MILES)*100)/100) + " miles",
                     "short": true
                   }
                 ]
@@ -138,7 +139,7 @@ app
                   },
                   {
                     "title": "Distance",
-                    "value": (Math.round((three_random[2].distance*CONVERT_MILES)*100)/100) + " miles",
+                    "value": (Math.round((three_random[2].distance*CONVERT_TO_MILES)*100)/100) + " miles",
                     "short": true
                   }
                 ]
