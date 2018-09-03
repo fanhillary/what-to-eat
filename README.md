@@ -1,4 +1,4 @@
-#What To Eat Slack Slash Command
+# What To Eat Slack Slash Command
 
 
 ## Description
@@ -8,6 +8,8 @@ Displays three random restaurants from Yelp API within your specified address, c
 ## Usage
 ### Display three random restaurants within 15 miles
 /what-to-eat [address/city/state/zipcode/etc]
+Example: /what-to-eat San Francisco
 
 ### Display three random restaurants within specified miles
 /what-to-eat [address/city/state/zipcode/etc] within [number in miles]
+Example: /what-to-eat LA within 10
