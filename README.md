@@ -1,39 +1,13 @@
-# node-js-getting-started
+#What To Eat Slack Slash Command
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+## Description
+Displays three random restaurants from Yelp API within your specified address, city, state, or zip code. 
+<img width="743" alt="screen shot 2018-09-02 at 8 55 38 pm" src="https://user-images.githubusercontent.com/15270809/44966922-dd204b80-aef2-11e8-97c2-c71eb86962ce.png">
 
-## Running Locally
+## Usage
+### Display three random restaurants within 15 miles
+/what-to-eat [address/city/state/zipcode/etc]
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
-
-```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-or
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## Documentation
-
-For more information about using Node.js on Heroku, see these Dev Center articles:
-
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+### Display three random restaurants within specified miles
+/what-to-eat [address/city/state/zipcode/etc] within [number in miles]
